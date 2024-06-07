@@ -15,7 +15,7 @@ books = [
 ]
 
 class Book(graphene.ObjectType):
-    id = graphene.Int(description="ID of the book", required=True)
+    id = graphene.String(description="ID of the book", required=True)
     name = graphene.String(description="Name of the book", required=True)
     author = graphene.String(description="Author of the book", required=True)
     status = graphene.String(description="Status of the book", required=True)
@@ -37,5 +37,4 @@ def graphql_endpoint():
     return jsonify(result.data)
 
 if __name__ == '__main__':
-    port = int(os.getenv("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run()
