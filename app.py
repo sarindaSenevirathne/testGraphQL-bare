@@ -4,8 +4,14 @@ from graphene import ObjectType, String, Int, List, Field
 
 app = Flask(__name__)
 
-# Your existing books list
-books = []
+books = [
+    {
+      "author": "me",
+      "id": 1,
+      "name": "adam sandler",
+      "status": "read"
+    }
+  ]
 
 # Helper function to generate IDs
 def generate_id():
@@ -16,6 +22,7 @@ class KeyValue(ObjectType):
     name = String(description="Name of the item", required=True)
     author = String(description="Author of the item", required=True)
     status = String(description="Status of the item", required=True)
+
 
 class Query(ObjectType):
     all_books = List(KeyValue)
