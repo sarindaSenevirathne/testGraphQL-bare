@@ -42,7 +42,7 @@ class Query(ObjectType):
 schema = graphene.Schema(query=Query)
 
 # GraphQL endpoint
-@app.route('/graphql', methods=['POST'])
+@app.route('/', methods=['POST'])
 def graphql_endpoint():
     data = request.get_json()
     result = schema.execute(data.get('query'))
