@@ -38,28 +38,8 @@ class Query(ObjectType):
                 return book
         return None
 
-class CreateBook(graphene.Mutation):
-    class Arguments:
-        name = String(required=True)
-        author = String(required=True)
-        status = String(required=True)
 
-    book = Field(KeyValue)
-
-    def mutate(self, info, name, author, status):
-        book = {
-            'id': generate_id(),
-            'name': name,
-            'author': author,
-            'status': status
-        }
-        books.append(book)
-        return CreateBook(book=book)
-
-class Mutation(ObjectType):
-    create_book = CreateBook.Field()
-
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = graphene.Schema(query=Query)
 
 # GraphQL endpoint
 @app.route('/graphql', methods=['POST'])
