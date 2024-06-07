@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 import graphene
-import os
+import json
 
 app = Flask(__name__)
 
@@ -30,11 +30,14 @@ schema = graphene.Schema(query=Query)
 
 @app.route('/graphql', methods=['POST'])
 def graphql_endpoint():
-    data = request.get_json()
-    result = schema.execute(data.get('query'))
-    if result.errors:
-        return jsonify({'errors': [str(e) for e in result.errors]})
-    return jsonify(result.data)
+    # data = request.get_json()
+    # result = schema.execute(data.get('query'))
+    # if result.errors:
+    #     return jsonify({'errors': [str(e) for e in result.errors]})
+    # return jsonify(result.data)
+    data = json.loads(request.data)
+    return json.dumps(schema.execute(data['query']).data)
+
 
 if __name__ == '__main__':
     app.run()
