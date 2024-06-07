@@ -19,4 +19,4 @@ USER 10016
 EXPOSE 5000
 
 # Start the Flask application
-CMD ["python", "app.py"]
+CMD ["python", "justrun.py"]
