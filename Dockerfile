@@ -18,5 +18,8 @@ USER 10016
 
 EXPOSE 5000
 
+ENV FLASK_APP=app.py
+
+
 # Start the Flask application
 CMD ["flask", "run", "--host=0.0.0.0"]
