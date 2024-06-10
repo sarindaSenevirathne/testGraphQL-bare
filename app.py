@@ -60,7 +60,7 @@ class Mutation(graphene.ObjectType):
 schema = graphene.Schema(query=Query, mutation=Mutation)
 
 
-@app.route('/graphql', methods=['POST'])
+@app.route('/', methods=['POST'])
 def graphql_endpoint():
     data = request.get_json()
     result = schema.execute(data.get('query'))
