@@ -8,7 +8,7 @@ books = [
         "id": "1",
         "name": "The Great Gatsby",
         "author": "F. Scott Fitzgerald",
-        "status": "read"
+        "status": "reading"
     },
     {
         "id": "2",
@@ -20,15 +20,20 @@ books = [
         "id": "3",
         "name": "1984",
         "author": "George Orwell",
-        "status": "in progress"
+        "status": "finished_reading"
     }
 ]
+
+class BookStatusEnum(graphene.Enum):
+    READING = "reading"
+    UNREAD = "unread"
+    FINISHED = "finished_reading"
 
 class Book(graphene.ObjectType):
     id = graphene.String(description = " number of the book", required = True)
     name = graphene.String(description="Name of the book", required=True)
     author = graphene.String(description="Author of the book", required=True)
-    status = graphene.String(description="Status of the book", required=True)
+    status = graphene.Field(BookStatusEnum, description="Status of the book", required=True)
 
 class Query(graphene.ObjectType):
     all_books = graphene.List(Book)
