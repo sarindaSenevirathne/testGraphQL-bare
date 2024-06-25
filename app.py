@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 import graphene
+from graphql_server.flask import GraphQLView
 
 app = Flask(__name__)
 
@@ -59,6 +60,11 @@ class Mutation(graphene.ObjectType):
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
 
+app.add_url_rule('/graphql', view_func=GraphQLView.as_view(
+    'graphql',
+    schema=schema,
+    graphiql=True
+))
 
 @app.route('/', methods=['POST'])
 def graphql_endpoint():
