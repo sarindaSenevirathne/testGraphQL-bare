@@ -5,7 +5,7 @@ endpoints:
       service:
         basePath: /
         port: 5000
-      type: GraphQL
+      type: REST
       networkVisibilities:
         - Public
         - Organization
